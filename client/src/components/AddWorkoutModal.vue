@@ -1,5 +1,7 @@
 <template>
+  <!--This component is  the moodelValue is true-->
   <div class="modal" :class="{ 'is-active': modelValue }">
+    <!--Backgound closes when the modal is clicked-->
     <div class="modal-background" @click="closeModel"></div>
     <div class="modal-card">
       <header class="modal-card-head">
@@ -7,11 +9,15 @@
         <button class="delete" aria-label="close" @click="closeModel"></button>
       </header>
       <section class="modal-card-body">
+        <!--Form for adding a new workout-->
         <div class="field">
           <form>
             <label class="label">Workout Type</label>
             <div class="control">
-              <!-- Q: I don't know why v-model doesnt work for select. -->
+            <!-- Various input fields for the workout details -->
+            <!-- Note: v-model doesn't work with select due to a Vue 3 limitation -->
+            <!-- Instead, the value is bound with :value and @input -->
+            <!-- ... -->
               <select :value="activity.type" @input="e => activity.type = (e.target as HTMLInputElement).value" class="input">
                 <option v-for="activity in Object.keys(User.activitiesAndTheirMET)">{{ activity }}</option>
               </select>
@@ -67,6 +73,7 @@
         </div>
       </section>
       <footer class="modal-card-foot">
+        <!-- Buttons for saving the new workout or cancelling the operation -->
         <button class="button is-success" @click="saveActivity">Save changes</button>
         <button class="button" @click="closeModel">Cancel</button>
       </footer>
@@ -94,16 +101,19 @@ const parseDate = (e: Event) => {
   console.log(newActivity.value.numDaysAgo);
 }
 
+//Gets current state of new Activity
 const activity = computed(() => {
   return newActivity.value;
 });
 
+//Saves the new activity
 const saveActivity = () => {
   console.log(activity.value);
   props.user.personalData.activities.push(activity.value);
   closeModel()
 }
 
+// Define props for the component
 const props = defineProps({
   user: {
     type: User,
@@ -115,6 +125,7 @@ const props = defineProps({
   },
 });
 
+// Closes the modal
 const closeModel = () => {
   emit('update:modelValue', false);
 }
