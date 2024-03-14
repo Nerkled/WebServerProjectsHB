@@ -1,10 +1,31 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
 import { User } from '@/components/User'
 import ProfilePhotoItem from './ProfilePhotoItem.vue';
 
 const navbar = ref({ burgerIsActive: false, loginDropdownIsActive: false });
+const darkMode = ref(localStorage.getItem('darkMode') === 'true');
+
+//On component mount, apply the dark mode class if needed
+onMounted(() => {
+  if (darkMode.value) {
+    document.documentElement.classList.add('dark-mode');
+  }
+});
+
+const toggleDarkMode = () => {
+  console.log('Toggling dark mode');
+  darkMode.value = !darkMode.value;
+  if (darkMode.value) {
+    document.body.classList.add('dark-mode');
+    localStorage.setItem('darkMode', 'true');
+  } else {
+    document.body.classList.remove('dark-mode');
+    localStorage.setItem('darkMode', 'false');
+  }
+}
+
 const props = defineProps({
   users: {
     type: Array<User>,
@@ -54,7 +75,7 @@ const handleTest = () => {
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <RouterLink class="navbar-item" to="/"><img alt="Vue logo" class="logo" src="@/assets/logo.webp" width="64"></RouterLink>
+        <RouterLink class="navbar-item" to="/"><img alt="Vue logo" class="logo" src="@/assets/logo.webp" width="84"></RouterLink>
         <RouterLink v-if="isLoggedIn" class="navbar-item" to="/activity">
           <span class="icon">
             <i class="fas fa-running"></i>
@@ -102,6 +123,7 @@ const handleTest = () => {
 
         <div class="navbar-end">
           <div class="navbar-item">
+            <!--<button @click="toggleDarkMode">Toggle Dark Mode</button>-->
             <div class="buttons">
               <RouterLink to="/signup" v-if="userState.currentUser.id == -1" class="button is-primary">
                 <strong>Sign up</strong>
@@ -173,6 +195,21 @@ const handleTest = () => {
 </template>
 
 <style scoped>
+/*:root {                       Plans to make a light and dark mode for te navbar
+  --background-color: white;
+  --text-color: black;
+}
+
+:root.dark-mode {
+  --background-color: black;
+  --text-color: white;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}*/
+
 /*Needed this for navbar color */
 .is-primary.is-primary {
   background-color: rgb(0, 0, 0);

@@ -107,4 +107,6 @@ const signUp = (event: Event) => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

@@ -139,9 +139,9 @@ export class User {
 
   static hasLiked(item: Activity | ActivityComment, userID: number): boolean {
     if (item.likedBy == undefined) return false;
-    if ("notes" in item) { // something only activities have
+    if ("notes" in item) { 
       return item.likedBy.includes(userID);
-    } else if ("comment" in item) { // something only activity comments have
+    } else if ("comment" in item) {
       return item.likedBy.includes(userID);
     }
     return false;

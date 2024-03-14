@@ -60,7 +60,7 @@ const isFriendsActivityList = computed(() => {
 
 const activityTitle = computed(() => {
   if(isFriendsActivityList.value) {
-    return "Friends Activity"
+    return "Friends Activities"
   } else if (userFromParam.value != props.userState.currentUser) {
     return userFromParam.value.getName()
   } else {
@@ -92,14 +92,14 @@ const userFromParam = computed<User>(() => {
 .add-workout {
   margin-bottom: 1em;
 }
-
+/*Friends Activity Box */
 .box.title {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-left: -1em;
   margin-right: -1em;
   text-align: center;
-  background-color: #00d1b2;
+  background-color: #ffffff;
   border-style: double;
   display: flex;
   justify-content: space-between;
@@ -108,6 +108,6 @@ const userFromParam = computed<User>(() => {
 }
 
 .box.title .icon {
-  text-shadow: 1px 1px 1px #ffffff;
+  text-shadow: 20px 20px 20pxrgb(0, 0, 0);
 }
 </style>

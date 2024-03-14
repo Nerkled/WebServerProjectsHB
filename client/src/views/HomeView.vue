@@ -2,6 +2,7 @@
 import { User } from '@/components/User';
 import { computed, type PropType } from 'vue';
 import ProfileView from './ProfileView.vue';
+import Footer from '@/components/Footer.vue';
 
 const props = defineProps({
   users: {
@@ -30,11 +31,29 @@ const isLoggedIn = computed(() => {
               Welcome to the Fitness App!
             </h1>
             <h2 class="subtitle">
-              Please log in or sign up to continue.
+              Log in or sign up to continue.
             </h2>
           </div>
         </div>
       </section>
     </div>
-  
+  <Footer/>
 </template>
+
+<style scoped> 
+h1, h2{
+  color: white;
+}
+h1{
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+h2{
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+</style>
+

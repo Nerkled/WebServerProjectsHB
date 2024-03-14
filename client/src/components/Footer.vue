@@ -1,0 +1,18 @@
+<template>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <img src="@/assets/logo.webp" alt="Logo" width="100">
+        <p>
+          © 2024 Henry Becker
+        </p>
+      </div>
+    </footer>
+  </template>
+  
+  <style scoped>
+  .footer {
+    padding: 2rem 1.5rem;
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  </style>

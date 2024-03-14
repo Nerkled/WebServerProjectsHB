@@ -9,15 +9,9 @@ const props = defineProps({
   },
   collatedAverage: {
     type: Object as PropType<{displayString:string, avgActivity: ActivityAverage}>,
-    //          for array w/ PropType: PropType<Array<{displayString:string,avgActivity: ActivityAverage}>>, 
-    //         original for reference: { displayString: string, avgActivity: Object as PropType<ActivityAverage> }[] 🤮
-    //         ~   NO ONE WILL READ THIS SO I CAN SAFELY SCREAM   ~
-    //        ~  🫲😇🫱 /-\\  I MISS UNSAFE CODE  //-\ 🫲😇🫱  ~
-    //         ~ 👏😇🎉 \_// PRAISE TO JAVASCRIPT \\_/ 👏😇🎉 ~
     required: true,
   }
 });
-//console.log(props.collatedAverage)
 
 
 const distanceInFeet = computed(() => {

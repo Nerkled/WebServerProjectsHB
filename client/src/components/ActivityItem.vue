@@ -86,7 +86,6 @@
 import { User, type Activity } from '@/components/User';
 import ProfilePhotoItem from './ProfilePhotoItem.vue';
 import CommentItem from './CommentItem.vue';
-//PropType for interfaces: https://stackoverflow.com/a/75050585
 import { computed, type PropType } from 'vue';
 import router from '@/router';
 import ActivityPhotoItem from '@/components/ActivityPhotoItem.vue';
@@ -121,8 +120,6 @@ const isStrengthActivity = computed<boolean>(() => {
   return User.isLooselyStrengthActivity(props.activity.type, props.activity.notes);
 })
 
-//console.log("activityitem", props.activity, "isDistanceActivity and isStrengthActivity", isDistanceActivity.value, isStrengthActivity.value)
-
 // find a user who has both isDistanceActivity and isStrengthActivity in one of their activities
 const findUsersWithBoth = () => {
   const users = props.users.filter((user) => {
@@ -133,29 +130,30 @@ const findUsersWithBoth = () => {
   return users;
 }
 
-//console.log("Users with both distance and strength", findUsersWithBoth())
 
 const like = () => {
   console.log("like", props.activity, props.userState.currentUser.id)
   User.like(props.activity, props.userState.currentUser.id)
 }
 
-// numDaysAgo to 
+// Setting the Days Ago  
 const formatTime = computed(() => {
   const numDaysAgo = props.activity.numDaysAgo;
   if (numDaysAgo == 0) return "Today";
   if (numDaysAgo == 1) return "Yesterday";
   if (numDaysAgo < 7) return numDaysAgo + " days ago";
   if (numDaysAgo < 14) return "Last week";
+  if (numDaysAgo == 14) return "1 fortnight ago";
   if (numDaysAgo < 21) return "2 weeks ago";
   if (numDaysAgo < 28) return "3 weeks ago";
   if (numDaysAgo < 60) return "Last month";
-  if (numDaysAgo < 180) return "about 6 months ago";
-  if (numDaysAgo < 365) return "about a year ago";
-  return "a long time ago";
+  if (numDaysAgo < 180) return "Roughly 6 months ago";
+  if (numDaysAgo < 365) return "Roughly a year ago";
+  if (numDaysAgo < 730) return "Roughly two years ago";
+  return "Over two years ago :O";
 });
 
-// Time of (now - numDaysAgo)
+// Here for the computed time the calculation is (Now - numDaysAgo)
 const timeString = computed(() => {
   const now = new Date();
   //console.log(props.activity)
