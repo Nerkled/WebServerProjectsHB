@@ -12,7 +12,7 @@
   <style scoped>
   .footer {
     padding: 2rem 1.5rem;
-    background-color: #f5f5f5;
+    background-color: #000000;
     text-align: center;
   }
   </style>
